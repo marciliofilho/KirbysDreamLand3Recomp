@@ -2,12 +2,6 @@ cmake_minimum_required(VERSION 3.20)
 project(Kirbydreamland3SNESRecomp C CXX)
 
 set(CMAKE_C_STANDARD 11)
-# Windows SDK include paths for MSVC
-include_directories(
-    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/ucrt"
-    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um"
-    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/shared"
-)
 
 # Release pin for lobby matching. Release builds stamp the VERSION file so two
 # peers can prove they are the same build; everything else stamps "dev".
