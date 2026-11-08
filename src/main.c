@@ -1,5 +1,5 @@
 /*
- * KirbyDreamLand3 — desktop host shim.
+ * Kirby's Dream Land 3 — desktop host shim.
  *
  * Identity and hooks, nothing else. The host itself is the framework's
  * (snesrecomp/runner/src/desktop/host_main.h): the pre-boot launcher, ROM

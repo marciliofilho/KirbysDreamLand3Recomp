@@ -1,6 +1,6 @@
 # recomp/
 
-Analysis input for KirbyDreamLand3. `tools/regen.sh` reads this directory and
+Analysis input for Kirby's Dream Land 3. `tools/regen.sh` reads this directory and
 writes `src/gen/`.
 
 | File | Owner | Notes |

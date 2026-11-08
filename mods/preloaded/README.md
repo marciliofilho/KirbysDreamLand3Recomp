@@ -8,7 +8,7 @@ packages/<package-id>/<version>/
   ...
 ```
 
-A manifest's `[[target]]` names this title as `game_id = "kirbydreamland3-jpn"` with the
+A manifest's `[[target]]` names this title as `game_id = "kirbydreamland3-usa"` with the
 ROM's SHA-256 (both live in `rom_identity.txt`). CMakeLists.txt declares this
 directory with `snesrecomp_target_mod_catalog` and the FRAMEWORK stages
 `packages/` beside the executable on every build -- do not add a copy step of

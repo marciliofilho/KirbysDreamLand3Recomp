@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Package a KirbyDreamLand3 release: a SETUP PACK.
+# Package a Kirby's Dream Land 3 release: a SETUP PACK.
 #
 # The zip does not contain the game. It contains a setup program (the host
 # built with -DSNESRECOMP_SETUP_HOST=ON, i.e. without recompiled code), the
@@ -64,7 +64,7 @@ exec bash "$IMPL" \
   --artifact "$PLATFORM" \
   --exe-name Kirbydreamland3SNESRecomp \
   --zip-prefix kirbydreamland3 \
-  --display-name "KirbyDreamLand3" \
+  --display-name "Kirby's Dream Land 3" \
   --rom-hint "$ROM_FILE" \
   --rom-sha256 "$ROM_SHA256" \
   --rom-crc32 "$ROM_CRC32" \

@@ -1,4 +1,4 @@
-# ROM identity for KirbyDreamLand3 — the single source of truth.
+# ROM identity for Kirby's Dream Land 3 — the single source of truth.
 #
 # Read by three consumers, so a revision change is made once, here:
 #   - the build   (CMake generates snesrecomp_rom_identity.h from this file)
@@ -9,7 +9,7 @@
 # quoted. Leaving a digest empty means the build cannot verify a ROM it is
 # handed — it will say so rather than accept it.
 
-display_name    = KirbyDreamLand3
+display_name    = "Kirby's Dream Land 3"
 rom_file        = kirby3.sfc
 # Every digest of the bare image (copier header stripped), so the Retro
 # catalog can take a submission's identity from this file rather than ask

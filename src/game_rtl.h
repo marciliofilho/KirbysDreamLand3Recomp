@@ -3,7 +3,7 @@
 
 #include "common_cpu_infra.h"
 
-/* One frame of KirbyDreamLand3. See game_rtl.c — this is the port. */
+/* One frame of Kirby's Dream Land 3. See game_rtl.c — this is the port. */
 void GameRunOneFrame(void);
 void GameDrawPpuFrame(void);
 void GameSessionReset(void);

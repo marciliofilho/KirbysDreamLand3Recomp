@@ -1,4 +1,4 @@
-# Build the KirbyDreamLand3 SETUP PACK for Linux, Windows, macOS
+# Build the Kirby's Dream Land 3 SETUP PACK for Linux, Windows, macOS
 # arm64 and macOS Intel, tag the commit, and publish the four zips as a
 # GitHub Release.
 #
@@ -326,7 +326,7 @@ jobs:
           if git rev-parse -q --verify "refs/tags/${TAG}" >/dev/null; then
             echo "tag ${TAG} already exists at $(git rev-parse --short "${TAG}") (re-release from that tag)"
           else
-            git tag -a "${TAG}" -m "KirbyDreamLand3 ${TAG}" "${GITHUB_SHA}"
+            git tag -a "${TAG}" -m "Kirby's Dream Land 3 ${TAG}" "${GITHUB_SHA}"
             git push origin "refs/tags/${TAG}"
             echo "tagged ${GITHUB_SHA::12} as ${TAG}"
           fi
@@ -340,7 +340,7 @@ jobs:
           ROM_FILE="$(python3 snesrecomp/tools/rom_identity.py rom_identity.txt --get rom_file)"
           ROM_SHA256="$(python3 snesrecomp/tools/rom_identity.py rom_identity.txt --get expected_sha256)"
           {
-            echo "KirbyDreamLand3 ${TAG} — setup packs"
+            echo "Kirby's Dream Land 3 ${TAG} — setup packs"
             echo
             echo "These packs do not contain the game. Each holds a setup program, the"
             echo "recompiler and the source; on first run it takes your own copy of"
@@ -366,7 +366,7 @@ jobs:
         with:
           tag_name: ${{ needs.preflight.outputs.tag }}
           target_commitish: ${{ github.sha }}
-          name: "KirbyDreamLand3 ${{ needs.preflight.outputs.tag }}"
+          name: "Kirby's Dream Land 3 ${{ needs.preflight.outputs.tag }}"
           body_path: notes.md
           files: |
             dist/${{ env.ZIP_PREFIX }}-*.zip

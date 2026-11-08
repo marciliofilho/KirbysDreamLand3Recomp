@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Regenerate src/gen/*.c for KirbyDreamLand3 from a verified ROM.
+# Regenerate src/gen/*.c for Kirby's Dream Land 3 from a verified ROM.
 #
 # Generated C is derived from copyrighted ROM data and is never committed;
 # every developer regenerates from their own copy. The ROM digests come from
@@ -71,7 +71,7 @@ if [ -n "$ROM" ]; then RESOLVE+=(--rom "$ROM"); fi
 if ! ROM=$("$PYTHON" "$CLI" "${RESOLVE[@]}"); then
   echo "regen.sh: pass --rom /path/to/kirby3.sfc, set SNESRECOMP_ROM, put it" >&2
   echo "          at the repo root, or record its path in rom.cfg. You must" >&2
-  echo "          legally own a copy of KirbyDreamLand3." >&2
+  echo "          legally own a copy of Kirby's Dream Land 3." >&2
   exit 1
 fi
 ROM=${ROM%$'\r'}  # Windows Python ends lines with CRLF

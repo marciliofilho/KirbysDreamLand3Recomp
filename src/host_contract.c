@@ -1,5 +1,5 @@
 /*
- * The host contract for KirbyDreamLand3.
+ * The host contract for Kirby's Dream Land 3.
  *
  * The runner is a library, not an application: a handful of symbols are
  * deliberately left for the host to define. The framework's desktop host

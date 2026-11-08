@@ -1,4 +1,4 @@
-/* Game-specific RAM variable declarations for KirbyDreamLand3.
+/* Game-specific RAM variable declarations for Kirby's Dream Land 3.
  *
  * The framework includes this by name (snes/cpu.c), so every project must
  * provide one even when it is empty. Populate it as WRAM locations are
