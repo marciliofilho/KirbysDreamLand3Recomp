@@ -146,11 +146,12 @@ without a prebuilt package.
 ## Image quality
 
 The shipped `config.ini` uses the common SNES-port baseline: OpenGL, 4x
-integer scaling, linear filtering off, the `Sharp` shader, and HD Mode 7 at
-8x. For a CRT look pick `CRT Soft`; for smoother scaling enable Linear
-filtering or `Warm Composite`. HD Mode 7 only affects Mode 7 backgrounds and
-requires OpenGL with frame blending off. A custom `.glslp` (MMPX, xBR, CRT
-Geom, ...) can be loaded from Settings → Shader → Browse.
+integer scaling, linear filtering **on**, no shader (so the bilinear filter
+smooths the upscale), and HD Mode 7 at 8x. For crisp pixel art pick the
+`Sharp` shader and turn Linear filtering off; for a CRT look pick `CRT Soft`.
+HD Mode 7 only affects Mode 7 backgrounds and requires OpenGL with frame
+blending off. A custom `.glslp` (MMPX, xBR, CRT Geom, ...) can be loaded from
+Settings → Shader → Browse.
 
 ## Launcher identity
 

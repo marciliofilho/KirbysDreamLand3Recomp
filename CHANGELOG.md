@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.1.2 — 2026-11-08
+
+- Default image quality now uses linear filtering (smoothed upscale); the
+  default shader is None so the filter is effective. Pick Sharp + linear off
+  for pixel-perfect, or CRT Soft for a CRT look.
+- Texture verification: the Level 1 start/transition and the butterfly were
+  compared frame-by-frame against the snes9x reference; the visible output
+  matches (remaining differences are one-frame animation/HUD timing). The
+  portal/stage-change reports still need a save state or screenshot to
+  reproduce.
+
 ## v0.1.1 — 2026-11-08
 
 First properly versioned release.
