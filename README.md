@@ -131,11 +131,12 @@ All of them are rebindable in the launcher.
 
 ## Launcher identity
 
-The launcher ships a Kirby-specific theme (`kirby` in
+The launcher ships a Kirby-specific palette (`kirby` in
 `recomp-ui/src/common/launcher_theme.h`): twilight-plum ground, Kirby pink as the
 primary accent, Warp Star yellow for section headings, sky-blue focus ring and
-CRT scanlines. The box art and the header emblem in `launcher_assets/img/` are
-original fan art drawn for this project (they are not official Nintendo assets).
+CRT scanlines. No character artwork is bundled: the GAME card uses the
+launcher's generic cartridge placeholder and the header uses the shared
+recomp-ui brand mark.
 
 ## Layout
 
@@ -145,7 +146,6 @@ original fan art drawn for this project (they are not official Nintendo assets).
 | `src/gen/` | Recompiled game C — generated locally, never committed |
 | `recomp/` | Analysis input: `bank*.cfg`, `symbols.toml`, generated `funcs.h` |
 | `rom_identity.txt` | ROM digests (build, regen, CI, launcher) |
-| `launcher_assets/` | Launcher box art and brand mark |
 | `snesrecomp/` | Framework submodule (CPU/PPU/APU/DMA/SA-1, recompiler, host) |
 | `recomp-ui/` | Launcher submodule (Dear ImGui) |
 | `tools/regen.sh` | ROM → C pipeline |

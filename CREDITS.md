@@ -7,8 +7,8 @@ lifting. Thank you to everyone below.
 
 - **Project and port work** — marciliofilho
   ([@marciliofilho](https://github.com/marciliofilho)).
-  Title-specific hosting, the Kirby launcher identity, launcher assets, and the
-  issue/validation work documented in the README.
+  Title-specific hosting, the Kirby launcher palette, and the issue/validation
+  work documented in the README.
 
 ## Frameworks
 

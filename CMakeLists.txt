@@ -125,12 +125,11 @@ if(NOT EXISTS "${RECOMP_UI_ROOT}/recomp_ui.cmake")
         "Run: git submodule update --init --recursive recomp-ui")
 endif()
 include(${RECOMP_UI_ROOT}/recomp_ui.cmake)
-# BOXART stages launcher_assets/img/boxart.tga beside the exe; the launcher
-# shows assets/img/boxart.tga by default. EXISTS-guarded in recomp_ui.cmake,
-# so this configures cleanly before any art is fetched.
-recomp_target_launcher_ui(Kirbydreamland3SNESRecomp CONSOLE snes
-    BOXART "${CMAKE_SOURCE_DIR}/launcher_assets/img/boxart.tga"
-    BRAND "${CMAKE_SOURCE_DIR}/launcher_assets/img/brand_kirby.tga")
+# No per-game box art or brand mark is shipped: the GAME card shows the
+# launcher's generic cartridge placeholder and the header uses the shared
+# recomp-ui mark. The 'kirby' palette (configure_launcher in src/main.c) is
+# the only title-specific launcher identity.
+recomp_target_launcher_ui(Kirbydreamland3SNESRecomp CONSOLE snes)
 
 # Generate & rebuild from inside the launcher: pick ROM -> recompile locally
 # -> cmake --build -> relaunch. The implementation is the framework's; this
