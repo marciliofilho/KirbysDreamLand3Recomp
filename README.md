@@ -74,7 +74,7 @@ machine from your own ROM. Source builds do the same steps directly.
 ## Build from source
 
 ```sh
-git clone --recurse-submodules https://github.com/<owner>/KirbysDreamLand3Recomp.git
+git clone --recurse-submodules https://github.com/marciliofilho/KirbysDreamLand3Recomp.git
 cd KirbysDreamLand3Recomp
 
 # Point at your own dump (or put kirby3.sfc beside the repo).
