@@ -143,6 +143,15 @@ Linux and macOS: build from source with the steps above. The release workflow
 can also produce a setup pack (source + recompiler + toolchain) for platforms
 without a prebuilt package.
 
+## Image quality
+
+The shipped `config.ini` uses the common SNES-port baseline: OpenGL, 4x
+integer scaling, linear filtering off, the `Sharp` shader, and HD Mode 7 at
+8x. For a CRT look pick `CRT Soft`; for smoother scaling enable Linear
+filtering or `Warm Composite`. HD Mode 7 only affects Mode 7 backgrounds and
+requires OpenGL with frame blending off. A custom `.glslp` (MMPX, xBR, CRT
+Geom, ...) can be loaded from Settings → Shader → Browse.
+
 ## Launcher identity
 
 The launcher ships a Kirby-specific palette (`kirby` in
