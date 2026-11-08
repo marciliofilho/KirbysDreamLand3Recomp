@@ -16,6 +16,9 @@
 # Local probe output that names paths on one machine
 /rom_probe.json
 
+# Post-mortem report written beside the executable after a crash
+/last_run_report.json
+
 # Launcher/runtime state written beside the executable (and in the repo root
 # when the game is run from there): the cached ROM path, keybinds, settings.
 # All of it is one machine's, none of it is the project's.
