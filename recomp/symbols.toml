@@ -1,21 +1,50 @@
 # Progressive symbol map for KirbyDreamLand3.
-#
-# Each [[func]] names an address the analyzer should treat as a function.
-# Set emit = true to promote one into ahead-of-time codegen; leave it false
-# to keep it interpreted. tools/regen.sh syncs labels and tier choices into
-# each recomp/bankNN.cfg; only emit=true adds a func/funcs.h declaration.
-# Do not hand-edit the generated blocks in the bank configs.
 
 [[func]]
 name = "I_RESET"
-addr = "0000"
+addr = "8000"
 bank = 0
-emit = false
-note = "Emulation RESET vector ($FFFC)"
+emit = true
+note = "Emulation RESET vector"
 
 [[func]]
 name = "I_NMI"
-addr = "0000"
+addr = "82f6"
 bank = 0
-emit = false
-note = "Native NMI vector ($FFEA)"
+emit = true
+note = "Native NMI vector"
+
+[[func]]
+name = "I_IRQ"
+addr = "8363"
+bank = 0
+emit = true
+note = "Native IRQ vector"
+
+[[func]]
+name = "SA1_WaitLoop"
+addr = "8216"
+bank = 0
+emit = true
+note = "Wait for SA-1 (CODE_008216)"
+
+[[func]]
+name = "SA1_Init"
+addr = "8239"
+bank = 0
+emit = true
+note = "SA-1 init (CODE_008239)"
+
+[[func]]
+name = "SA1_Sub82F3"
+addr = "82f3"
+bank = 0
+emit = true
+note = "Called from wait loop"
+
+[[func]]
+name = "SA1_Sub82F0"
+addr = "82f0"
+bank = 0
+emit = true
+note = "Called from line 300"

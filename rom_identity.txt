@@ -20,7 +20,7 @@ expected_sha1   = 12aff7538f43641a1e2bf424593df5b49fe150f6
 expected_sha256 = b50bf9d95485e8aeb7a6730e9f9f9c9c4ec23a85b336a4fb2e3b63034531e36f
 rom_size        = 4194304
 mapping         = sa1
-region          = JPN
+region          = USA
 # What a mod package's [[target]] game_id must name to apply to this title
 # (snesrecomp/docs/MOD_PACKAGES.md). Stable across revisions on purpose.
-game_id         = kirbydreamland3-jpn
+game_id         = kirbydreamland3-usa

@@ -1,43 +1,29 @@
-/*
- * KirbyDreamLand3 — per-game runtime glue.
- *
- * THIS FILE IS THE PORT. Everything else the scaffold produced is layout,
- * build wiring, and packaging; this is where the actual work happens.
- *
- * The framework does not, and cannot, drive an arbitrary SNES game on its
- * own. Two responsibilities always land on the game host:
- *
- *   1. Deciding what "one frame" means for THIS title, and returning from
- *      run_frame() at that boundary. A real ROM's reset vector never
- *      returns — it enters a main loop that waits on vblank — so somebody
- *      has to choose the yield point.
- *   2. Delivering NMI/IRQ at the hardware edge (see
- *      snesrecomp/docs/FRAME_MODEL_HOSTS.md).
- *
- * A new port starts on the framework's beam-aligned driver
- * (runner/src/beam_frame_driver.h): one frame is one PPU field, cut at the
- * beam's vblank edge; interrupts -- raster splits and a coprocessor's IRQ
- * line -- are taken where the beam latches them; parked time still runs the
- * beam, APU and coprocessors; and the field is rasterized from the raster
- * journal with real HDMA. It is the framework's, so a fix to it reaches this
- * port on a submodule pull.
- *
- * This file used to hold its own copy of a simpler driver: frames measured
- * from wherever the CPU last stopped, NMI delivered at an arbitrary beam
- * position, the field drawn with end-of-frame register state. A game that
- * uploads in vblank between INIDISP=$80 and $0F flickered black, and one
- * that chains raster splits fell apart. Replace these calls only for what
- * the driver does not do; MetalWarriorsSNESRecomp's src/mw_rtl.c and
- * GundamWingEndlessDuelSNESRecomp's src/game_rtl.c are developed examples of
- * title-specific drivers.
- */
-
 #include "game_rtl.h"
-
+#include "common_cpu_infra.h"
+#include "common_rtl.h"
 #include "beam_frame_driver.h"
+#include "snes/ppu.h"
+#include "snes/snes.h"
+#include "snes/apu.h"
+#include "snes/cart.h"
+
+static int _apu_primed = 0;
 
 void GameRunOneFrame(void)
 {
+    if (!_apu_primed && g_snes && g_snes->apu) {
+        /* Prime the SPC700 IPL ROM once the machine exists. On hardware the
+         * APU boots within a few microseconds of reset, long before the
+         * S-CPU reaches the SPC upload handshake ($00:DD61 checks $2140 for
+         * $AA). The generic scheduler only advances the SPC on APU-port
+         * writes, and the first write is inside that same handshake, so
+         * without this the SPC is still at its reset vector when the
+         * handshake polls and the upload is skipped forever. */
+        RtlApuLock();
+        apu_runCycles(g_snes->apu, 4096);
+        RtlApuUnlock();
+        _apu_primed = 1;
+    }
     snes_beam_frame_driver_run_frame();
 }
 
@@ -48,16 +34,20 @@ void GameDrawPpuFrame(void)
 
 void GameSessionReset(void)
 {
-    /* Rematch / soft-return: clear anything that must not survive a new
-     * session. recomp-ai-rules/NETPLAY.md §3 — sticky state that "has always
-     * been fine" is the usual desync culprit, because single-player never
-     * re-enters the boot path twice in one process. */
+    _apu_primed = 0;
+    snes_beam_frame_driver_reset();
+}
+
+void GameInitialize(void)
+{
+    /* Machine reset happens after this hook; the APU is primed at the first
+     * frame instead (see GameRunOneFrame). */
     snes_beam_frame_driver_reset();
 }
 
 const RtlGameInfo kGameInfo = {
     .title = "kirbydreamland3",
-    .initialize = NULL,
+    .initialize = &GameInitialize,
     .run_frame = &GameRunOneFrame,
     .draw_ppu_frame = &GameDrawPpuFrame,
     .save_name_prefix = "save",
