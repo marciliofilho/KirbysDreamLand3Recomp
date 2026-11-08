@@ -11,9 +11,10 @@ gameplay path: the SNES hardware model (PPU, APU, DMA, SA-1) is the framework's,
 and the game code runs as compiled C.
 
 > **You must legally own a copy of Kirby's Dream Land 3 (USA).**
-> No ROM data and no recompiler output is distributed with this project — not in
-> the repository, not in releases. The recompiled C (`src/gen/`) is generated
-> locally from your own dump and is never committed.
+> No ROM data is distributed with this project — not in the repository, not in
+> releases. The repository also never contains the generated `src/gen/` source.
+> The Windows release is a prebuilt binary with the recompiled code compiled in;
+> it still requires your own dump at runtime.
 
 > This is an unofficial fan project. It is **not affiliated with, endorsed by,
 > or sponsored by Nintendo or HAL Laboratory**. "Kirby" and "Kirby's Dream Land"
@@ -129,6 +130,19 @@ Hotkeys: `Alt+Enter` fullscreen, `Ctrl+R` reset, `Shift+P` pause, `Tab`
 fast-forward, `Ctrl+Up/Down` window size, `F11` save-state menu, `F12` rewind.
 All of them are rebindable in the launcher.
 
+## Releases
+
+The GitHub Releases page ships a prebuilt **Windows x64** package,
+`kirbydreamland3-<version>-windows-x64.zip`. It contains the native build and
+its launcher assets, but **no ROM**: place your own USA dump beside the
+executable (CRC32 `ec8a48f6`, SHA-256
+`b50bf9d95485e8aeb7a6730e9f9f9c9c4ec23a85b336a4fb2e3b63034531e36f`) or pick it
+in the launcher.
+
+Linux and macOS: build from source with the steps above. The release workflow
+can also produce a setup pack (source + recompiler + toolchain) for platforms
+without a prebuilt package.
+
 ## Launcher identity
 
 The launcher ships a Kirby-specific palette (`kirby` in
@@ -185,11 +199,13 @@ See [`CREDITS.md`](CREDITS.md) for the full list. In short:
 
 ## Legal
 
-This project is an unofficial, noncommercial fan work. It contains no game ROM,
-no game code, and no assets extracted from the ROM. The player must supply their
-own legally obtained cartridge dump. The project is not affiliated with,
-endorsed by, or sponsored by Nintendo or HAL Laboratory. All trademarks and
-copyrights in the game belong to their respective owners.
+This project is an unofficial, noncommercial fan work. The repository contains
+no game ROM, no generated `src/gen/` source and no assets extracted from the
+ROM. The Windows release is a prebuilt binary with the recompiled game code
+compiled in; it contains no ROM. The player must supply their own legally
+obtained cartridge dump. The project is not affiliated with, endorsed by, or
+sponsored by Nintendo or HAL Laboratory. All trademarks and copyrights in the
+game belong to their respective owners.
 
 The project's own source is licensed under the **PolyForm Noncommercial License
 1.0.0** — see [`LICENSE`](LICENSE). The framework submodules carry their own
