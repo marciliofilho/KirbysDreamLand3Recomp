@@ -1,8 +1,8 @@
 [submodule "snesrecomp"]
 	path = snesrecomp
-	url = https://github.com/mstan/snesrecomp.git
-	branch = main
+	url = https://github.com/marciliofilho/snesrecomp.git
+	branch = kirby-port
 [submodule "recomp-ui"]
 	path = recomp-ui
-	url = https://github.com/mstan/recomp-ui.git
-	branch = master
+	url = https://github.com/marciliofilho/recomp-ui.git
+	branch = kirby-port
