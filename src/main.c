@@ -27,6 +27,7 @@
 
 #include "host_main.h"
 #include "game_rtl.h"
+#include "recomp_launcher.h"          /* RecompLauncherCGameInfo (launcher identity) */
 #include "snesrecomp_rom_identity.h"  /* generated from rom_identity.txt */
 
 #ifndef __ANDROID__
@@ -42,9 +43,20 @@
 #define SNES_GAME_VERSION "dev"
 #endif
 
+/* Per-title launcher identity, applied after the shared "snes" profile has
+ * seeded the neutral CRT look. Only the palette is replaced: the console's
+ * platform label, controller vocabulary, ROM noun and capability set stay the
+ * framework's, so this hook cannot make the SNES page drift from its siblings.
+ * "kirby" is the built-in theme in recomp-ui/src/common/launcher_theme.h. */
+static void ConfigureLauncher(struct RecompLauncherCGameInfo *info)
+{
+    if (!info) return;
+    info->theme = "kirby";
+}
+
 static const SnesDesktopHostGame kGameHost = {
-    .display_name        = "KirbyDreamLand3",
-    .window_title        = "KirbyDreamLand3",
+    .display_name        = "Kirby's Dream Land 3",
+    .window_title        = "Kirby's Dream Land 3 (Recompiled)",
     .region              = SNESRECOMP_ROM_REGION,
     .rom_file            = SNESRECOMP_ROM_FILE,
     .expected_sha256_hex = SNESRECOMP_ROM_EXPECTED_SHA256,
@@ -53,9 +65,19 @@ static const SnesDesktopHostGame kGameHost = {
     .build_version       = SNES_GAME_VERSION,
     .game_info           = &kGameInfo,
     .num_players         = 2,
+    /* SNES pixel proportions (4:3 / 8:7 / 1:1) in the launcher's DISPLAY card. */
+    .display_aspect_supported = 1,
+    /* GLSL preset picker. snesrecomp_target_shader_presets() in CMake stages
+     * the shared catalog next to the executable. */
+    .shader_supported    = 1,
+    /* Rewind rows (on/off, depth, interval) and persistence to [Rewind]. The
+     * F12 hotkey already works with the built-in defaults; this is what lets
+     * the player size or disable the 19 MB snapshot ring. */
+    .rewind_settings     = 1,
     /* Battery-backed SRAM shows the launcher's SAVES panel. Leave NULL for a
      * title without one. The path is exe-relative. */
     .sram_path           = "saves/save.srm",
+    .configure_launcher  = &ConfigureLauncher,
 };
 
 #ifndef __ANDROID__

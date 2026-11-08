@@ -2,6 +2,12 @@ cmake_minimum_required(VERSION 3.20)
 project(Kirbydreamland3SNESRecomp C CXX)
 
 set(CMAKE_C_STANDARD 11)
+# Windows SDK include paths for MSVC
+include_directories(
+    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/ucrt"
+    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um"
+    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/shared"
+)
 
 # Release pin for lobby matching. Release builds stamp the VERSION file so two
 # peers can prove they are the same build; everything else stamps "dev".
@@ -99,6 +105,10 @@ snesrecomp_target_sdl(Kirbydreamland3SNESRecomp)
 # hooks; the host is the framework's and improves on a submodule pull.
 # Add TIER2 once this port reads the interpreter-gap manifest after each run.
 snesrecomp_target_desktop_host(Kirbydreamland3SNESRecomp)
+# GLSL preset catalog (CRT Soft, LCD Grid, Sharp, Warm Composite) staged under
+# assets/shaders beside the executable. Paired with shader_supported = 1 in
+# src/main.c; the launcher's DISPLAY card lists them.
+snesrecomp_target_shader_presets(Kirbydreamland3SNESRecomp)
 # rom.cfg (the ROM the wizard set this project up from; git-ignored) is
 # staged beside the executable when none is there yet, so the first launch
 # opens on that dump rather than asking for one.
@@ -119,7 +129,8 @@ include(${RECOMP_UI_ROOT}/recomp_ui.cmake)
 # shows assets/img/boxart.tga by default. EXISTS-guarded in recomp_ui.cmake,
 # so this configures cleanly before any art is fetched.
 recomp_target_launcher_ui(Kirbydreamland3SNESRecomp CONSOLE snes
-    BOXART "${CMAKE_SOURCE_DIR}/launcher_assets/img/boxart.tga")
+    BOXART "${CMAKE_SOURCE_DIR}/launcher_assets/img/boxart.tga"
+    BRAND "${CMAKE_SOURCE_DIR}/launcher_assets/img/brand_kirby.tga")
 
 # Generate & rebuild from inside the launcher: pick ROM -> recompile locally
 # -> cmake --build -> relaunch. The implementation is the framework's; this
