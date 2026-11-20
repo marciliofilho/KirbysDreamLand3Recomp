@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.1.3 — 2026-11-20
+
+- HD Mode 7 shader: fixed the reserved GLSL word `half` in `hd_gpu.c`. The
+  shader now compiles and the HD GPU path is actually active (verified on a
+  Radeon RX 9070 XT at 8x / 2048x1792); before, it silently fell back to
+  native rendering.
+- PPU raster journal: OAM (sprite table and high-OAM) is now per-line state,
+  like CGRAM. Sprite Y/tile/palette writes that land mid-field render at the
+  correct line instead of applying the final table to the whole field.
+- QA: long Level 1 right-hold traversal (4,700+ frames) with no black frames,
+  luma outliers, crashes or shader errors; HD GPU active.
+
 ## v0.1.2 — 2026-11-08
 
 - Default image quality now uses linear filtering (smoothed upscale); the
